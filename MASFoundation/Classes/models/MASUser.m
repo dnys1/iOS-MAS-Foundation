@@ -242,6 +242,11 @@ static NSString *const MASUserAttributesPropertyKey = @"attributes";
     }
     else if (!self.isAuthenticated)
     {
+        if (force)
+        {
+            [[MASModelService sharedService] clearCurrentUserForLogout];
+        }
+        
         if (completion)
         {
             completion(NO, [NSError errorUserNotAuthenticated]);
